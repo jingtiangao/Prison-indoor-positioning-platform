@@ -1,0 +1,27 @@
+<?xml version="1.0"?>  
+<!DOCTYPE hibernate-mapping PUBLIC   
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+      
+<hibernate-mapping package="com.location.entity">
+    <!--生成默认为user的数据库表-->  
+    <class name="Device_info" table="ls_device_info">  
+        <id name="device_id" column="device_id">  
+            <!-- 算法的核心思想是结合机器的网卡、当地时间、一个随机数来生成GUID -->  
+            <!-- <generator class="native"></generator> --> 
+        </id>  
+        <property name="user_id" column="device_mac"></property>
+        <property name="accuracy" column="accuracy"></property>  
+        <property name="floor_id" column="floor_id"></property>  
+        <property name="build_id" column="build_id"></property>  
+        <property name="error_code" column="error_code"></property>  
+        <property name="nearest_tag_id" column="nearest_tag_id"></property>
+        <property name="timestamp_millisecond" column="timestamp_millisecond"></property> 
+        <property name="x_millimeter" column="x_millimeter"></property> 
+        <property name="y_millimeter" column="y_millimeter"></property> 
+        <property name="alarm" column="alarm"></property>   
+        <property name="info" column="info"></property>   
+        <property name="compass" column="compass"></property>
+    </class>  
+      
+</hibernate-mapping>

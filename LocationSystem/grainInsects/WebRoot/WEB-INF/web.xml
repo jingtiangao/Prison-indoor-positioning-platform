@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<display-name>grainInsects</display-name>
+	<description>储粮害虫信息平台 V3.0</description>
+
+	<!-- 读取spring的配置文件的信息-->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath*:/applicationContext.xml,
+		</param-value>
+	</context-param>
+<!--
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+  -->
+  	<!-- filter可以对用户请求进行预处理 -->
+	<filter>
+		<filter-name>encodingConvertFilter</filter-name>
+		<filter-class>com.grain.filter.EncodingConvertFilter</filter-class>
+		<init-param>
+			<param-name>fromEncoding</param-name>
+			<param-value>ISO-8859-1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>toEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+ 	
+	<filter>
+		<filter-name>siteStatusFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	
+	<filter>
+		<filter-name>accessDeniedFilter</filter-name>
+		<filter-class>com.grain.filter.AccessDeniedFilter</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>areaCacheFilter</filter-name>
+		<filter-class>net.sf.ehcache.constructs.web.filter.SimplePageCachingFilter</filter-class>
+		<init-param>
+			<param-name>cacheName</param-name>
+			<param-value>area</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>articleCacheFilter</filter-name>
+		<filter-class>net.sf.ehcache.constructs.web.filter.SimplePageCachingFilter</filter-class>
+		<init-param>
+			<param-name>cacheName</param-name>
+			<param-value>article</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>friendLinkCacheFilter</filter-name>
+		<filter-class>net.sf.ehcache.constructs.web.filter.SimplePageCachingFilter</filter-class>
+		<init-param>
+			<param-name>cacheName</param-name>
+			<param-value>friendLink</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>compressingFilter</filter-name>
+		<filter-class>com.planetj.servlet.filter.compression.CompressingFilter</filter-class>
+	</filter>
+
+<!--
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  -->	
+	
+	<filter-mapping>
+		<filter-name>encodingConvertFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingConvertFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>siteStatusFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>siteStatusFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>siteStatusFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>accessDeniedFilter</filter-name>
+		<url-pattern>/install/data/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>accessDeniedFilter</filter-name>
+		<url-pattern>/install/sample/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>accessDeniedFilter</filter-name>
+		<url-pattern>*.properties</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>accessDeniedFilter</filter-name>
+		<url-pattern>*.conf</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>areaCacheFilter</filter-name>
+		<url-pattern>/common/area</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>areaCacheFilter</filter-name>
+		<url-pattern>/admin/common/area</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>articleCacheFilter</filter-name>
+		<url-pattern>/article/list/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>friendLinkCacheFilter</filter-name>
+		<url-pattern>/friend_link</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>compressingFilter</filter-name>
+		<url-pattern>*.css</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>compressingFilter</filter-name>
+		<url-pattern>*.js</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>compressingFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>compressingFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>compressingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
+	<!-- 配置springmvc 对应的配置文件为applicationContext.xml 拦截所有的请求-->
+	<!-- 启用前端调度器以后，用户请求将会被纳入SpringMVC的管理之内，然后可以调用Controller来处理用户请求 -->
+	<servlet>
+		<servlet-name>grainInsects</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath*:/applicationContext-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>grainInsects</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- listener用来监听web应用在web容器中运行时发生的各种事件 -->
+	<!-- ContextLoaderListener监听器的作用就是启动Web容器时，自动装配ApplicationContext的配置信息,用来初始化Spring容器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<!-- 配置web应用的首页列表访问index.html,如果没有就访问index.jsp -->
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>

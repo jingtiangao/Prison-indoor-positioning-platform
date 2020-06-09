@@ -1,0 +1,101 @@
+#moquu_top,#moquu_wxin,#moquu_wshare,#moquu_wmaps {
+	z-index:2;
+	width:41px;
+	height:41px;
+	right:10px;
+	position:fixed;
+	cursor:pointer;
+	_position:absolute;
+	_bottom:auto;
+	_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)))
+}
+
+#moquu_wxin {
+	bottom:200px;
+	_margin-bottom:200px
+}
+#moquu_wxin a {
+	background:url(../images/sbtn.png) 0 -0px;
+	right:0;
+	float:left;
+	width:41px;
+	height:41px;
+	text-indent:-9999px
+}
+#moquu_wxin a:hover {
+	background:url(../images/sbtn.png) -41px -0px
+}
+#moquu_wshare {
+	bottom:158px;
+	_margin-bottom:158px
+}
+#moquu_wshare a {
+	background:url(../images/sbtn.png) 0 -41px;
+	width:41px;
+	height:41px;
+	right:0;
+	float:left;
+	text-indent:-9999px
+}
+#moquu_wshare a:hover {
+	background:url(../images/sbtn.png) -41px -41px
+}
+#moquu_top {
+	bottom:116px;
+	_margin-bottom:116px;
+	background:url(../images/sbtn.png) 0 -83px;
+	width:41px;
+	height:41px
+}
+#moquu_top:hover {
+	background:url(../images/sbtn.png) -41px -83px
+}
+.moquu_wxin,.moquu_wshare {
+	position:relative;
+	z-index:2
+}
+.moquu_wxin a:hover .moquu_wxinh,.moquu_wshare a:hover .moquu_wshareh {
+	display:block
+}
+
+/*出现展示图*/
+/*出现展示图*/
+.moquu_wxin .moquu_wxinh {
+	position:absolute;
+	display:none;
+	left:-185px;
+	top:-130px;
+	width:180px;
+	height:238px;
+	background:url(../images/lrtk_weixin.png) 0 -2px no-repeat
+}
+.moquu_wshare .moquu_wshareh {
+	position:absolute;
+	display:none;
+	left:-185px;
+	top:-130px;
+	width:180px;
+	height:238px;
+	background:url(../images/lrtk_app.png) no-repeat
+}
+
+/*客服QQ*/
+.main-im{position:fixed;right:10px;bottom:250px;z-index:100;width:110px;height:272px;}
+.main-im .qq-a{display:block;width:106px;height:116px;font-size:14px;color:#0484cd;text-align:center;position:relative;}
+.main-im .qq-a span{bottom:5px;position:absolute;width:90px;left:10px;}
+.main-im .qq-hover-c{width:70px;height:70px;border-radius:35px;position:absolute;left:18px;top:10px;overflow:hidden;z-index:9;}
+.main-im .qq-container{z-index:99;position:absolute;width:109px;height:118px;border-top-left-radius:10px;border-top-right-radius:10px;border-bottom:1px solid #dddddd;background:url(../images/qq-icon-bg.png) no-repeat center 8px;}
+.main-im .img-qq{max-width:60px;display:block;position:absolute;left:6px;top:3px;-moz-transition:all 0.5s;-webkit-transition:all 0.5s;-o-transition:all 0.5s;transition:all 0.5s;}
+.main-im .im-qq:hover .img-qq{max-width:70px;left:1px;top:8px;position:absolute;}
+.main-im .im_main{background:#F9FAFB;border:1px solid #dddddd;border-radius:10px;background:#F9FAFB;display:none;}
+.main-im .im_main .im-tel{color:#000000;text-align:center;width:109px;height:105px;margin-top:20px;}
+.main-im .im_main .im-tel div{font-weight:bold;font-size:12px;line-height:30px;}
+.main-im .im_main .im-tel a{background: url('../images/float_s_03.png') no-repeat  left top;padding-left:20px;color:#e35231}
+.main-im .im_main .im-tel a:hover{color:#e35231}
+.main-im .im_main .im-tel .tel-num{font-family:Arial;font-weight:bold;color:#e66d15;}
+.main-im .im_main .im-tel:hover{background:#fafafa;}
+.main-im .close-im{position:absolute;right:10px;top:-12px;z-index:100;width:24px;height:24px;}
+.main-im .close-im a{display:block;width:24px;height:24px;background:url(../images/close_im.png) no-repeat left top;}
+.main-im .close-im a:hover{text-decoration:none;}
+.main-im .open-im{cursor:pointer;margin-left:70px;width:40px;height:133px;background:url(../images/open_im.png) no-repeat left top;}
+/*客服QQ*/

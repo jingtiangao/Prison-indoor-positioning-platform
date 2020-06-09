@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va	+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+	    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="page-PersonManage.css">
+	</head>
+	<body>
+<div id="wholePage">
+
+<form class="form-horizontal" action="http://localhost:8080/grainInsects/depoter/common/management/prisoner_addOrUpdate" method="post">
+  <div class="form-group">
+    <label for="InputName" class="col-sm-2 control-label">姓名</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="InputName" name="InputName">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="InputNumber" class="col-sm-2 control-label">编号</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="InputNumber" name="InputNumber">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="InputMonitor" class="col-sm-2 control-label">所在监区</label>
+    <div class="col-sm-10">
+      <select class="form-control" name="InputMonitor">
+  <option>第一监区</option>
+  <option>第二监区</option>
+  <option>第三监区</option>
+  <option>第四监区</option>
+  <option>第五监区</option>
+  <option>第六监区</option>
+  <option>第七监区</option>
+  <option>第八监区</option>
+     </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="InputGroup" class="col-sm-2 control-label">所在组</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="InputGroup" name="InputGroup">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="InputEquipment" class="col-sm-2 control-label">设备编号</label>
+    <div class="col-sm-10">
+      <select class="form-control" name="InputEquipment">
+  <option>1-321-521</option>
+  <option>1-321-522</option>
+  <option>1-321-523</option>
+  <option>1-321-524</option>
+  <option>1-321-525</option>
+  <option>1-321-526</option>
+</select>
+    </div>
+  </div>
+  <div class="form-group" >
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default" id="submitButton">确定</button>
+    </div>
+  </div>
+</form>
+</div>
+
+	</body>
+</html>

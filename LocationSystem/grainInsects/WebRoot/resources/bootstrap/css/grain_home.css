@@ -1,0 +1,75 @@
+/*body{font-family: "Microsoft Yahei";}*/
+.left{ float: left; }
+.right{ float: right; }
+
+/*personal-center*/
+.person-center{
+  font-family: "Microsoft Yahei";
+  background-color: #eee;
+  display: block;
+  height: 30px;
+  width: 100%;
+  font-size: 14px;
+}
+.person-center a{
+  text-decoration: none;
+  line-height: 30px;
+  color: #333;
+  margin: 0 5px;
+}
+.person-center .c-personal{margin:0 15px;}
+.person-center span{ line-height: 30px; }
+
+/*banners and news*/
+.banner-n-news{
+  display: block;
+  overflow: hidden;
+}
+.item img.banner-pic{
+  height: auto;
+  width: 100%;
+}
+.news-body{
+  border: 1px #ddd solid;
+  border-top-left-radius:0;
+  border-top-right-radius:0;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top: none;
+  height: 500px;
+  margin-bottom: 60px;
+}
+.news-body ul{
+  padding-left: 24px;
+  padding-right: 10px;
+}
+.news-body a{
+  color: #333;
+  line-height: 26px;
+}
+
+/*advertisement part*/
+.hot-ads-header{
+  border-top: 4px solid #000;
+  font-weight: bold;
+  padding-top: 20px;
+  margin: 0 0 20px;
+}
+.u106{
+  height: 100px;
+  width: 171px;
+  margin-right: 5px;
+}
+.hot-ads h5{
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin: 4px 0;
+}
+.hot-ads ul{
+  padding-left: 10px;
+}
+.hot-ads ul li a{
+  color: #333;
+  line-height: 26px;
+}

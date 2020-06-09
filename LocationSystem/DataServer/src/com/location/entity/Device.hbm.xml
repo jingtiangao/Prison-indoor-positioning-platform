@@ -1,0 +1,16 @@
+<?xml version="1.0"?>  
+<!DOCTYPE hibernate-mapping PUBLIC   
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.location.entity">
+	<class name="Device" table="ls_device">
+		<id name="device_id" column="device_id">
+			<generator class="increment" />
+		</id>
+		<property name="device_mac" column="device_mac"></property>
+		<property name="device_code" column="device_code"></property>
+		<property name="createtime" column="createtime"></property>
+		<property name="isvalid" column="isvalid"></property>
+	</class>
+</hibernate-mapping>

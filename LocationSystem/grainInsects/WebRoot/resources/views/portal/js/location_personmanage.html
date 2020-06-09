@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va	+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+	    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="page-PersonManage.css">
+		<script type="text/javascript" src="script.js"></script>
+	</head>
+	<body>
+		<!-- 搜索和新增按钮-->
+		<div class="row">
+  		    <input  class="searchPerson" type="text" placeholder="搜索">
+		    <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myAddModal" id="create">新 增 </button>
+		</div><!-- /.row -->
+		<div id="list">
+			<table class="table table-hover" width="100%">
+				<tr><th>序号</th><th>姓名</th><th>编号</th><th>设备编号</th><th>所在组</th><th>所在监区</th><th>操作</th></tr>
+				<tr onclick="getID(this)"><td>1</td><td>Michael Scofield</td><td>12345678</td><td>12345678</td><td>八-12345678</td><td>第八监区</td>
+				<td><div class="btn-group" role="group" aria-label="...">
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myUpdateModal" >修改</button>
+					<button type="button" class="btn btn-default" onclick="clickDelete(event)">删除</button>
+				</div></td>
+				</tr>
+				<tr onclick="getID(this)"><td>2</td><td>Lincoln Burrows</td><td>12345678</td><td>12345678</td><td>八-12345678</td><td>第八监区</td>
+				<td><div class="btn-group" role="group" aria-label="...">
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myUpdateModal" >修改</button>
+					<button type="button" class="btn btn-default" onclick="clickDelete(event)">删除</button>
+				</div></td>
+				</tr>
+				<tr onclick="getID(this)"><td>3</td><td>Veronica Donovan</td><td>12345678</td><td>12345678</td><td>八-12345678</td><td>第八监区</td>
+				<td><div class="btn-group" role="group" aria-label="...">
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myUpdateModal" >修改</button>
+					<button type="button" class="btn btn-default" onclick="clickDelete(event)">删除</button>
+				</div></td>
+				</tr>
+			</table>
+		</div>
+		<!-- 新增人员模态对话框Modal -->
+		<div class="modal fade" id="myAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;
+		        </span></button>
+		        <h4 class="modal-title" id="myModalLabel">新增人员信息</h4>
+		      </div>
+		      <div class="modal-body">
+					   <form class="form-horizontal" action="http://localhost:8080/grainInsects/depoter/common/management/prisoner_addOrUpdate" method="post">
+					      <div class="form-group">
+					        <label for="InputName" class="col-sm-2 control-label">姓名</label>
+					        <div class="col-sm-10">
+					          <input type="text" class="form-control" id="InputName" name="InputName">
+					        </div>
+					      </div>
+					      <div class="form-group">
+					        <label for="InputNumber" class="col-sm-2 control-label">编号</label>
+					        <div class="col-sm-10">
+					          <input type="text" class="form-control" id="InputNumber" name="InputNumber">
+					        </div>
+					      </div>
+					      <div class="form-group">
+					        <label for="InputMonitor" class="col-sm-2 control-label">所在监区</label>
+					          <div class="col-sm-10">
+					            <select class="form-control" name="InputMonitor">
+					              <option>第一监区</option>
+					              <option>第二监区</option>
+					              <option>第三监区</option>
+					              <option>第四监区</option>
+					              <option>第五监区</option>
+					              <option>第六监区</option>
+					              <option>第七监区</option>
+					              <option>第八监区</option>
+					           </select>
+					          </div>
+					      </div>
+					      <div class="form-group">
+					        <label for="InputGroup" class="col-sm-2 control-label">所在组</label>
+					        <div class="col-sm-10">
+					          <input type="text" class="form-control" id="InputGroup" name="InputGroup">
+					        </div>
+					      </div>
+					      <div class="form-group">
+					        <label for="InputEquipment" class="col-sm-2 control-label">设备编号</label>
+					        <div class="col-sm-10">
+					          <select class="form-control" name="InputEquipment">
+					            <option>1-321-521</option>
+					            <option>1-321-522</option>
+					            <option>1-321-523</option>
+					            <option>1-321-524</option>
+					            <option>1-321-525</option>
+					            <option>1-321-526</option>
+					          </select>
+					        </div>
+					      </div>
+					      <div class="modal-footer" >
+					     
+					          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					          <button type="submit" class="btn btn-primary " id="submitButton">确定</button>
+					      </div>
+					  </form>
+		      </div>
+
+		    </div>
+		  </div>
+		</div>
+		<!-- 修改人员模态对话框Modal -->
+		<div class="modal fade" id="myUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;
+		        </span></button>
+		        <h4 class="modal-title" id="myModalLabel">修改人员信息</h4>
+		      </div>
+		      <div class="modal-body">
+					   <form class="form-horizontal" action="http://localhost:8080/grainInsects/depoter/common/management/prisoner_addOrUpdate" method="post">
+					      <div class="form-group">
+					        <label for="InputName" class="col-sm-2 control-label">姓名</label>
+					        <div class="col-sm-10">
+					          <input type="text" class="form-control" id="InputName" name="InputName" value="Michael Scofield">
+					        </div>
+					      </div>
+					      <div class="form-group">
+					        <label for="InputNumber" class="col-sm-2 control-label">编号</label>
+					        <div class="col-sm-10">
+					          <input type="text" class="form-control" id="InputNumber" name="InputNumber" value="12345678">
+					        </div>
+					      </div>
+					      <div class="form-group">
+					        <label for="InputMonitor" class="col-sm-2 control-label">所在监区</label>
+					          <div class="col-sm-10">
+					            <select class="form-control" name="InputMonitor">
+					              <option>第一监区</option>
+					              <option>第二监区</option>
+					              <option>第三监区</option>
+					              <option>第四监区</option>
+					              <option>第五监区</option>
+					              <option>第六监区</option>
+					              <option>第七监区</option>
+					              <option>第八监区</option>
+					           </select>
+					          </div>
+					      </div>
+					      <div class="form-group">
+					        <label for="InputGroup" class="col-sm-2 control-label">所在组</label>
+					        <div class="col-sm-10">
+					          <input type="text" class="form-control" id="InputGroup" name="InputGroup" value="八-12345678">
+					        </div>
+					      </div>
+					      <div class="form-group">
+					        <label for="InputEquipment" class="col-sm-2 control-label">设备编号</label>
+					        <div class="col-sm-10">
+					          <select class="form-control" name="InputEquipment">
+					            <option>1-321-521</option>
+					            <option>1-321-522</option>
+					            <option>1-321-523</option>
+					            <option>1-321-524</option>
+					            <option>1-321-525</option>
+					            <option>1-321-526</option>
+					          </select>
+					        </div>
+					      </div>
+					      <div class="modal-footer" >
+					     
+					          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					          <button type="submit" class="btn btn-primary " id="submitButton">确定</button>
+					      </div>
+					  </form>
+		      </div>
+
+		    </div>
+		  </div>
+		</div>
+	</body>
+</html>
+

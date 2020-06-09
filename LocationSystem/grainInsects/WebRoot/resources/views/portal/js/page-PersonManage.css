@@ -1,0 +1,28 @@
+body{
+	background-color: #fff;	
+}
+#accordion{
+	width:150px;
+	height:100%;
+	float:left;
+	margin:5px;
+}
+.row{
+	float:right;
+	width:500px;
+}
+.form-control{
+	float:left;
+	margin:8px;
+}
+#list{
+	width:80%;
+	float:left;
+	padding:20px;
+}
+#submitButton{
+	float:right;
+}
+#wholePage{
+	width:80%;
+}

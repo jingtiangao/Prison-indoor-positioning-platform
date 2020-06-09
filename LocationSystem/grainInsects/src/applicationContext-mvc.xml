@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd"
+	default-lazy-init="true">
+	
+	<!-- 参数配置文件的位置 -->
+	<context:property-placeholder location="classpath*:/grain.properties" ignore-resource-not-found="true" ignore-unresolvable="true" />
+	
+	<!-- 自动扫描com.grain开头的包下面的文件并将有 @Controller注解的类注册为bean -->
+	<context:component-scan base-package="com" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<mvc:annotation-driven validator="validator" />
+
+	<mvc:annotation-driven >
+		<!-- 注册默认的convert -->
+		<mvc:message-converters register-defaults="true">
+			<!--
+					配置RequestMappingHandlerAdapter 需要用到的HttpMessageConvert,
+					重新制定其supportedMediaTypes 解决@responsebody中文乱码
+				-->
+			<!-- String convert -->
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<!-- json convert -->
+			<!-- 使用Jackson进行json的转换 -->
+			<!-- 在controller里支持使用@RequestBody注解，自动将requestbody里的json字符串的entity 转换为对应的对象实例 -->
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+				<!-- StringHttpMessageConverter的父类里有个List supportedMediaTypes属性
+				用来存放StringHttpMessageConverter支持需特殊处理的MediaType类型
+				如果需处理的MediaType类型不在supportedMediaTypes列表中，则采用默认字符集。 -->
+					<list>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+
+		</mvc:message-converters>
+
+	</mvc:annotation-driven>
+	<!-- 拦截器的作用是拦截用户的请求并进行相应的处理 -->
+	<!-- 要想实现一个拦截器，只需要实现HandlerInterceptor接口中的三个方法即可，在拦截相应请求并验证成功以后才能进入相应的controller进行处理 -->
+	<mvc:interceptors>
+		<!--
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**" />
+			<bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+				<property name="cacheSeconds" value="0" />
+			</bean>
+		</mvc:interceptor>
+		-->
+		<!-- 懒加载用 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean id="openSessionInViewInterceptor" class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor">
+				<property name="entityManagerFactory" ref="entityManagerFactory" />
+			</bean>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/common/**" />
+			<bean id="commonLoginInterceptor" class="com.grain.interceptor.CommonLoginInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**" />
+			<bean id="logInterceptor" class="com.grain.interceptor.LogInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**" />
+			<bean id="adminInterceptor" class="com.grain.interceptor.AdminInterceptor" />
+		</mvc:interceptor>	
+				
+		<mvc:interceptor>
+			<mvc:mapping path="/depoter/**" />
+			<bean id="depoterInterceptor" class="com.grain.interceptor.DepoterInterceptor" />
+		</mvc:interceptor>
+		
+		<!-- Mark added -->
+		<mvc:interceptor>
+			<mvc:mapping path="/investor/**" />
+			<bean id="investorInterceptor" class="com.grain.interceptor.InvestorInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/expert/**" />
+			<bean id="expertInterceptor" class="com.grain.interceptor.ExpertInterceptor" />
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/factory/**" />
+			<bean id="factoryInterceptor" class="com.grain.interceptor.FactoryInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/farmer/**" />
+			<bean id="farmerInterceptor" class="com.grain.interceptor.FarmerInterceptor" />
+		</mvc:interceptor>
+		
+		
+		
+	</mvc:interceptors>
+	<!-- 对SpringMVC进行数据验证 -->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+
+    <!-- 配置freeMarker视图解析器 -->
+    <bean id="viewResolverFtl"  class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="contentType" value="text/html; charset=UTF-8" />
+		<property name="suffix" value="${template.suffix}" />
+        <property name="order" value="0"/>
+    </bean>	
+    
+	<!--JSP视图解析器-->
+	<bean id="viewResolverJsp"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+    
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView" value="/common/error" />
+	</bean>
+	
+	<!-- 静态资源文件的访问 -->
+	<!-- 为了引用资源的访问不会类似CONTROLLER一样被拦截 -->
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources location="/upload/" mapping="/upload/**" />
+	<mvc:resources location="/favicon.ico" mapping="/favicon.ico" />
+    
+</beans>
